@@ -1,10 +1,11 @@
 import type { NextPage } from 'next'
+import { Title } from '../components/Title'
 import { Container } from './home'
 
 const Home: NextPage = () => {
   return (
     <Container>
-      <h1>Hello world</h1>
+      <Title />
     </Container>
   )
 }

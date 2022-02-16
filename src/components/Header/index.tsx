@@ -7,7 +7,7 @@ export function Header() {
   return (
     <Container>
       <div>
-        <h1>Naped</h1>
+        <h2>Naped</h2>
       </div>
       <div>
         <Menu />

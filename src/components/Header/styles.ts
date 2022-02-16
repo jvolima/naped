@@ -10,7 +10,7 @@ export const Container = styled.header`
   justify-content: space-between;
 
   div {
-    h1 {
+    h2 {
       font-family: "Lexend Deca", sans-serif;
       font-size: 1.5rem;
       color: var(--purple-light);
