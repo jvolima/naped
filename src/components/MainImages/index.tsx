@@ -4,13 +4,25 @@ import { Container } from "./styles";
 export function MainImages() {
   return (
     <Container>
-      <Image src="/bannerSeries.svg" alt="Banner series" width="761" height="350"/>
-      <div>
-        <div className="firstImage">
-          <Image src="/bannerAnimes.svg" alt="Banner animes" width="338" height="165"/>
-        </div>
+      <div className="bigImage">
+        
         <div>
-          <Image src="/bannerGames.svg" alt="Banner games" width="338" height="165"/>
+          <span>Lorem</span>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eros tellus, malesuada et velit in, blandit molestie dolor.</p>
+      </div>
+      <div>
+        <div className="smallImage1">
+          <div>
+            <span>Lorem</span>
+          </div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eros tellus, malesuada et velit in, blandit molestie dolor.</p>
+        </div>
+        <div className="smallImage2">
+          <div>
+            <span>Lorem</span>
+          </div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eros tellus, malesuada et velit in, blandit molestie dolor.</p>
         </div>
       </div>
     </Container>

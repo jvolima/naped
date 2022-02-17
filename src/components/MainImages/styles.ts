@@ -8,9 +8,134 @@ export const Container = styled.main`
   gap: 1.25rem;
   grid-template-columns: 761px 338px 338px;
 
+  .bigImage {
+    position: relative;
+    background-image: url(/bannerSeries.svg);
+    height: 350px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(360deg, #13131F 0%, rgba(19, 19, 31, 0) 100%);
+    }
+
+    div {
+      border-radius: 3px;
+      margin: 1rem 2rem 0;
+      width: 5rem;
+      height: 1.5rem;
+      background: var(--purple-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        font-family: "Lexend Deca", sans-serif;
+        font-size: 0.875rem;
+        color: var(--white);
+        line-height: 1rem;
+      }
+    }
+
+    p {
+      position: absolute;
+      z-index: 2;
+      margin: 11.875rem 2rem 0;
+      font-size: 1.5rem;
+      line-height: 2.125rem;
+      color: var(--white);
+      font-family: "Lexend Deca", sans-serif;
+    }
+  }
+
   div {
-    .firstImage {
-      margin-bottom: 1.25rem;
+    .smallImage1 {
+      background-image: url(/bannerAnimes.svg);
+      position: relative;
+      height: 165px;
+
+      &::after {
+        content: "";  
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(360deg, #13131F 0%, rgba(19, 19, 31, 0) 100%);
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 4.375rem;
+        height: 1.25rem;
+        background: var(--purple-light);
+        border-radius: 3px;
+
+        span {
+          font-family: "Lexend Deca", sans-serif;
+          font-size: 0.75rem;
+          color: var(--white);
+          line-height: 1rem;
+        }
+      }
+
+      p {
+        margin: 4.125rem 1rem 0;
+        position: absolute;
+        z-index: 2;
+        font-size: 0.8125rem;
+        line-height: 1.25rem;
+        color: var(--white);
+      }
+    }
+
+    .smallImage2 {
+      background-image: url(/bannerGames.svg);
+      position: relative;
+      height: 165px;
+      margin-top: 1.25rem;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(360deg, #13131F 0%, rgba(19, 19, 31, 0) 100%);
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 4.375rem;
+        height: 1.25rem;
+        background: var(--purple-light);
+        border-radius: 3px;
+        
+        span {
+          font-family: "Lexend Deca", sans-serif;
+          font-size: 0.75rem;
+          color: var(--white);
+          line-height: 1rem;
+        }
+      }
+
+      p {
+        margin: 4.125rem 1rem 0;
+        position: absolute;
+        z-index: 2;
+        font-size: 0.8125rem;
+        line-height: 1.25rem;
+        color: var(--white);
+      }
     }
   }
 `

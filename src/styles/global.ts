@@ -34,6 +34,6 @@ export const GlobalStyle = createGlobalStyle`
   body, input, select, button, textarea {
     font-size: 1rem;
     font-family: "Inter", sans-serif;
-    font-weight: bold
+    font-weight: 400
   }
 `
