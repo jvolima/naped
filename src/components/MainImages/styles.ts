@@ -8,7 +8,19 @@ export const Container = styled.main`
   gap: 1.25rem;
   grid-template-columns: 761px 338px 338px;
 
+  @media (max-width: 1160px) {
+    display: flex;
+    flex-direction: column;
+    
+    .smallImages {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
   .bigImage {
+    max-width: 761px;
+    width: 100%;
     position: relative;
     background-image: url(/bannerSeries.svg);
     height: 350px;
@@ -54,7 +66,10 @@ export const Container = styled.main`
 
   div {
     .smallImage1 {
+      max-width: 338px;
+      width: 100%;
       background-image: url(/bannerAnimes.svg);
+      padding: 0.7rem;
       position: relative;
       height: 165px;
 
@@ -86,7 +101,7 @@ export const Container = styled.main`
       }
 
       p {
-        margin: 4.125rem 1rem 0;
+        margin-top: 4.125rem;
         position: absolute;
         z-index: 2;
         font-size: 0.8125rem;
@@ -96,6 +111,9 @@ export const Container = styled.main`
     }
 
     .smallImage2 {
+      max-width: 338px;
+      width: 100%;
+      padding: 0.7rem;
       background-image: url(/bannerGames.svg);
       position: relative;
       height: 165px;
@@ -129,7 +147,7 @@ export const Container = styled.main`
       }
 
       p {
-        margin: 4.125rem 1rem 0;
+        margin-top: 4.125rem;
         position: absolute;
         z-index: 2;
         font-size: 0.8125rem;
