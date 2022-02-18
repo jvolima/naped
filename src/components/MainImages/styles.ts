@@ -15,6 +15,24 @@ export const Container = styled.main`
     .smallImages {
       display: flex;
       flex-direction: row;
+
+      .smallImage2 {
+        margin-top: 0rem;
+        margin-left: 2rem;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .smallImages {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .smallImage2 {
+        margin-top: 2rem;
+        margin-left: 0rem;
+      }
     }
   }
 
