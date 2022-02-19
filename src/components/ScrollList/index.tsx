@@ -1,5 +1,4 @@
 import { Container } from "./styles";
-import Image from "next/image"
 import { ScrollCard } from "../ScrollCard";
 
 export function ScrollList() {
@@ -11,6 +10,7 @@ export function ScrollList() {
       <ScrollCard />
       <ScrollCard />
       <ScrollCard />
+      <ScrollCard />  
       <ScrollCard />  
     </Container>
   )
