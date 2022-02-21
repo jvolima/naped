@@ -1,7 +1,18 @@
 import { NoticeCard } from "../NoticeCard";
 import { Container, NoticeTitle } from "./styles";
 
-export function Notices() {
+interface Notice {
+  uid: string;
+  title: string;
+  image: string;
+  description: string;
+}
+
+interface NoticesProps {
+  notices: Notice[];
+}
+
+export function Notices({ notices }: NoticesProps) {
   return (
     <> 
       <NoticeTitle>
@@ -9,12 +20,11 @@ export function Notices() {
         <div className="underline"></div>
       </NoticeTitle>
       <Container>
-        <NoticeCard />
-        <NoticeCard />
-        <NoticeCard />
-        <NoticeCard />
-        <NoticeCard />
-        <NoticeCard />
+        {
+          notices.map(notice => (
+            <NoticeCard image={notice.image} key={notice.uid} />
+          ))
+        }
       </Container>
     </>
   )

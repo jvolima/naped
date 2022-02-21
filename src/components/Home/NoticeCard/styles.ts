@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<{image: string}>`
   padding: 0.625rem;
-  background-image: url(/cardGta.svg);
+  background-image: url(${props => props.image});
   width: 338px;
   height: 250px;
   position: relative;

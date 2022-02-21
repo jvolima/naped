@@ -1,8 +1,12 @@
 import { Container } from "./styles";
 
-export function NoticeCard() {
+interface NoticeCardProps {
+  image: string
+}
+
+export function NoticeCard({ image }: NoticeCardProps) {
   return (
-    <Container>
+    <Container image={image}>
       <div>
         <span>Lorem</span>
       </div>
