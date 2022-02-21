@@ -22,7 +22,12 @@ export function Notices({ notices }: NoticesProps) {
       <Container>
         {
           notices.map(notice => (
-            <NoticeCard image={notice.image} key={notice.uid} />
+            <NoticeCard
+              title={notice.title} 
+              description={notice.description} 
+              image={notice.image} 
+              key={notice.uid} 
+            />
           ))
         }
       </Container>
