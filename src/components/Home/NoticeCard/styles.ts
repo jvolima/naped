@@ -30,7 +30,7 @@ export const Container = styled.div<{image: string}>`
       color: var(--white);
       font-size: 0.75rem;
       font-family: "Lexend Deca", sans-serif;
-      line-height: 1rem
+      line-height: 1rem;
     }
   }
 

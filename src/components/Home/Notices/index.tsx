@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { NoticeCard } from "../NoticeCard";
 import { Container, NoticeTitle } from "./styles";
 
@@ -22,12 +23,16 @@ export function Notices({ notices }: NoticesProps) {
       <Container>
         {
           notices.map(notice => (
-            <NoticeCard
-              title={notice.title} 
-              description={notice.description} 
-              image={notice.image} 
-              key={notice.uid} 
-            />
+            <Link href={`/notice/${notice.uid}`} key={notice.uid}>
+              <a>
+                <NoticeCard
+                  title={notice.title} 
+                  description={notice.description} 
+                  image={notice.image} 
+                  key={notice.uid} 
+                />
+              </a>
+            </Link>
           ))
         }
       </Container>
