@@ -128,8 +128,6 @@ export const getStaticProps: GetStaticProps = async context => {
     }) 
   }
 
-  console.log(notice.content)
-
   return {
     props: {
       notices,

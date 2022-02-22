@@ -8,10 +8,20 @@ interface Notice {
   title: string;
   image: string;
   description: string;
+  last_publication_data: string;
 }
 
 export function Notices() {
   const { notices } = useNotices();
+
+  function ordemCrescente(notice1: Notice, notice2: Notice) {
+    return new Date(notice2.last_publication_data).getTime() - new Date(notice1.last_publication_data).getTime()  
+  }
+
+  if(notices.length >= 6) {
+    let newNotices = [...notices];
+    newNotices.sort(ordemCrescente);
+  }
 
   return (
     <> 
