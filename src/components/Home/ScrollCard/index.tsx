@@ -1,17 +1,33 @@
 import { Container } from "./styles";
 
-export function ScrollCard() {
+interface ScrollCardProps {
+  uid: string;
+  image: string;
+  title: string;
+  description: string;
+  last_publication_data: string;
+}
+
+export function ScrollCard({
+    uid, 
+    image, 
+    title, 
+    description, 
+    last_publication_data
+  }: ScrollCardProps
+) {
   return (
-    <Container>
+    <Container>    
       <div className="cardImage">
+        <img src={image} width="200px" height="151px"/>
         <div>
-          <span>Lorem</span>
+          <span>{title}</span>
         </div>
       </div>
       <div className="cardTexts">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eros tellus, malesuada et velit in, blandit molestie dolor.</p>
+        <p>{description}</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eros tellus, malesuada et velit in, blandit molestie dolor...</p>
-        <time>00/00/0000</time>
+        <time>{last_publication_data}</time>
         <button>Ler notícia</button>
       </div>
     </Container>

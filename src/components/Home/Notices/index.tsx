@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useNotices } from "../../../hooks/useNotices";
 import { NoticeCard } from "../NoticeCard";
 import { Container, NoticeTitle } from "./styles";
 
@@ -9,11 +10,9 @@ interface Notice {
   description: string;
 }
 
-interface NoticesProps {
-  notices: Notice[];
-}
+export function Notices() {
+  const { notices } = useNotices();
 
-export function Notices({ notices }: NoticesProps) {
   return (
     <> 
       <NoticeTitle>

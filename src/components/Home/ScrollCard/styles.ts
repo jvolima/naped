@@ -7,8 +7,9 @@ export const Container = styled.div`
   .cardImage {
     padding: 0.625rem;
     width: 200px;
-    background-image: url(/cardPain.svg);
     position: relative;
+    margin: 0;
+    padding: 0;
 
     &::after {
       content: "";  
@@ -21,6 +22,9 @@ export const Container = styled.div`
     }
 
     div {
+      margin: 0.625rem;
+      top: 0px;
+      position: absolute;
       width: 4rem;
       height: 1rem;
       background: var(--purple-light);
@@ -59,6 +63,8 @@ export const Container = styled.div`
     }
 
     time {
+      display: block;
+      margin-top: 0.7rem;
       color: var(--white-200);
       font-weight: 600;
       font-size: 0.625rem;
@@ -67,7 +73,7 @@ export const Container = styled.div`
 
     button {
       cursor: pointer;
-      margin-top: 0.5625rem;
+      margin-top: 0.7rem;
       background-color: var(--purple-light);
       width: 6.25rem;
       height: 1.5rem;

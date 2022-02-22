@@ -7,6 +7,7 @@ import { Container } from "./styles";
 import { RichText } from "prismic-dom";
 import { ParsedUrlQuery } from "querystring";
 import Image from "next/image";
+import { NoticesProvider, useNotices } from "../../hooks/useNotices";
 
 interface Content {
   heading: {
@@ -22,6 +23,7 @@ interface Notice {
   title: string;
   description: string;
   image: string;
+  last_publication_data: string;
 }
 
 interface SelectedNotice extends Notice {
@@ -33,7 +35,6 @@ interface SelectedNotice extends Notice {
       text: string;
     }[]
   }[]
-  last_publication_data: string;
 }
 
 interface NoticeProps {
@@ -42,10 +43,8 @@ interface NoticeProps {
 }
 
 export default function Notice({ notices, notice }: NoticeProps) {
-  console.log(notice.image)
-
   return (
-    <>
+    <NoticesProvider notices={notices}>
       <Head>
         <title>{notice.title} | Naped</title>
       </Head>
@@ -66,9 +65,9 @@ export default function Notice({ notices, notice }: NoticeProps) {
             ))
           }
         </div>
-        <Notices notices={notices} />
+        <Notices />
       </Container>
-    </>
+    </NoticesProvider>
   )
 }
 
@@ -98,7 +97,12 @@ export const getStaticProps: GetStaticProps = async context => {
       uid: notice.uid as string,
       title: notice.data.title as string,
       description: RichText.asText(notice.data.description),
-      image: notice.data.image.url as string
+      image: notice.data.image.url as string,
+      last_publication_data: new Date(notice.last_publication_date as string).toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "long", 
+        year: "numeric"
+      }) 
     }
   })
 

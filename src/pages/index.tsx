@@ -8,12 +8,14 @@ import { Notices } from '../components/Home/Notices'
 import { Title } from '../components/Home/Title'
 import { getPrismicClient } from '../services/prismic'
 import { Container } from './styles/home'
+import { NoticesProvider } from '../hooks/useNotices';
 
 interface Notice {
   uid: string;
   title: string;
   description: string;
   image: string;
+  last_publication_data: string;
 }
 
 interface HomeProps {
@@ -22,7 +24,7 @@ interface HomeProps {
 
 export default function Home({ notices }: HomeProps) {
   return (
-    <>
+    <NoticesProvider notices={notices}>
       <Head>
         <title>Início | Naped</title>
       </Head>
@@ -30,9 +32,9 @@ export default function Home({ notices }: HomeProps) {
         <Title />
         <MainImages />
         <Contents />
-        <Notices notices={notices} />
+        <Notices />
       </Container>
-    </>
+    </NoticesProvider>
   )
 }
 
@@ -55,7 +57,12 @@ export const getStaticProps: GetStaticProps = async () => {
       uid: notice.uid as string,
       title: notice.data.title as string,
       description: RichText.asText(notice.data.description),
-      image: notice.data.image.url as string
+      image: notice.data.image.url as string,
+      last_publication_data: new Date(notice.last_publication_date as string).toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "long", 
+        year: "numeric"
+      }) 
     }
   })
 
