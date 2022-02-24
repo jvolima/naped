@@ -22,10 +22,11 @@ export function Notices() {
   }
 
   useEffect(() => {
-    if(notices.length >= 5) {
+    if(notices.length >= 6) {
       let newNotices = [...notices];
       newNotices.sort(ordemCrescente);
-      setRecentNotices(newNotices);
+      newNotices.splice(6, newNotices.length);
+      setRecentNotices(newNotices)
     } else {
       setRecentNotices(notices)
     }

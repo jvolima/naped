@@ -28,7 +28,7 @@ export const Container = styled.div`
       align-items: center;
       justify-content: center;
       background: var(--purple-light);
-      max-width: 6.375rem;
+      max-width: 7.375rem;
       min-width: 4.375rem;
       padding: 0 0.5rem;
       height: 20px;

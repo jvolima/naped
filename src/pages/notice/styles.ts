@@ -41,10 +41,6 @@ export const Container = styled.main`
           margin: 2.75rem 0;
         }
 
-        a {
-          text-decoration: none;
-        }
-
         strong {
           font-weight: bold;
         }
