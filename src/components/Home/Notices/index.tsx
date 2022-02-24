@@ -29,7 +29,7 @@ export function Notices() {
     } else {
       setRecentNotices(notices)
     }
-  }, [recentNotices])
+  }, [])
 
   return (
     <> 

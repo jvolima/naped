@@ -98,11 +98,7 @@ export const getStaticProps: GetStaticProps = async context => {
       title: notice.data.title as string,
       description: RichText.asText(notice.data.description),
       image: notice.data.image.url as string,
-      last_publication_data: new Date(notice.last_publication_date as string).toLocaleDateString("pt-BR", {
-        day: "2-digit",
-        month: "long", 
-        year: "numeric"
-      }) 
+      last_publication_data: notice.last_publication_date as string
     }
   })
 
