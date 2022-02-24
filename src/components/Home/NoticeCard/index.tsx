@@ -8,9 +8,12 @@ interface NoticeCardProps {
 
 export function NoticeCard({ image, title, description }: NoticeCardProps) {
   return (
-    <Container image={image}>
-      <div>
-        <span>{title}</span>
+    <Container>
+      <div className="cardImage">
+        <img src={image} width="338px" height="250px" alt="notice" />
+        <div>
+          <span>{title}</span>
+        </div>
       </div>
       <p>{description}</p>
     </Container>

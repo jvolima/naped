@@ -25,7 +25,9 @@ export const Container = styled.div`
       margin: 0.625rem;
       top: 0px;
       position: absolute;
-      width: 4rem;
+      min-width: 4rem;
+      max-width: 6rem;
+      padding: 0 0.5rem;
       height: 1rem;
       background: var(--purple-light);
       border-radius: 3px;

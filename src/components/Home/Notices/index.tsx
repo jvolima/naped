@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useNotices } from "../../../hooks/useNotices";
 import { NoticeCard } from "../NoticeCard";
 import { Container, NoticeTitle } from "./styles";
@@ -14,14 +15,21 @@ interface Notice {
 export function Notices() {
   const { notices } = useNotices();
 
+  const [recentNotices, setRecentNotices] = useState<Notice[]>([])
+
   function ordemCrescente(notice1: Notice, notice2: Notice) {
     return new Date(notice2.last_publication_data).getTime() - new Date(notice1.last_publication_data).getTime()  
   }
 
-  if(notices.length >= 6) {
-    let newNotices = [...notices];
-    newNotices.sort(ordemCrescente);
-  }
+  useEffect(() => {
+    if(notices.length >= 5) {
+      let newNotices = [...notices];
+      newNotices.sort(ordemCrescente);
+      setRecentNotices(newNotices);
+    } else {
+      setRecentNotices(notices)
+    }
+  }, [recentNotices])
 
   return (
     <> 
@@ -31,7 +39,7 @@ export function Notices() {
       </NoticeTitle>
       <Container>
         {
-          notices.map(notice => (
+          recentNotices.map(notice => (
             <Link href={`/notice/${notice.uid}`} key={notice.uid}>
               <a>
                 <NoticeCard

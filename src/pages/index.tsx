@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps = async () => {
         "notices.image", 
         "notices.description"
       ],
-      pageSize: 6
+      pageSize: 100,
     }
   )
 
