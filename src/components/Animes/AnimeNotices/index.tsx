@@ -39,29 +39,40 @@ export function AnimeNotices({ next_page, prev_page }: AnimeNoticesProps) {
   }, [data?.total_pages])
 
   async function handleClickNumber() {
-    if(next_page !== null) {
+    if (currentPage === pageNumbers.length) {
+      const response = await carregarPaginaAnterior();
+
+      setCurrentPage(oldState => oldState - 1)
+      const newNotices: Notice[] = response.results.map((result: any) => {
+        const newNotice = {
+          uid: result.uid,
+          title: result.data.title,
+          description: result.data.description[0].text,
+          image: result.data.image.url,
+          last_publication_data: result.last_publication_date
+        }
+
+        return newNotice
+      })
+
+      setPageNotices(newNotices)
+    } else {
       const response = await carregarProximaPagina()
 
-      console.log(response)
+      setCurrentPage(oldState => oldState + 1)
+      const newNotices: Notice[] = response.results.map((result: any) => {
+        const newNotice = {
+          uid: result.uid,
+          title: result.data.title,
+          description: result.data.description[0].text,
+          image: result.data.image.url,
+          last_publication_data: result.last_publication_date
+        }
 
-      if (currentPage === pageNumbers.length) {
-        setCurrentPage(oldState => oldState - 1)
-      } else {
-        setCurrentPage(oldState => oldState + 1)
-        const newNotices: Notice[] = response.results.map((result: any) => {
-          const newNotice = {
-            uid: result.uid,
-            title: result.data.title,
-            description: result.data.description[0].text,
-            image: result.data.image.url,
-            last_publication_data: result.last_publication_date
-          }
+        return newNotice
+      })
 
-          return newNotice
-        })
-
-        setPageNotices(newNotices)  
-      }
+      setPageNotices(newNotices)  
     }
   }
 
@@ -74,6 +85,13 @@ export function AnimeNotices({ next_page, prev_page }: AnimeNoticesProps) {
     }
   }
 
+  async function carregarPaginaAnterior() {
+    const response = await fetch(next_page).then(response => response.json())
+    const prevPage = await fetch(response.prev_page).then(response => response.json())
+
+    return prevPage;
+  }
+
   return (
     <Container>
       <div className="containerGrid">
@@ -84,7 +102,7 @@ export function AnimeNotices({ next_page, prev_page }: AnimeNoticesProps) {
         }
       </div>
       <div className="pageChanger">
-        <button className="pageNumber" type="button">
+        <button onClick={handleClickNumber} className="pageNumber" type="button">
           <span className={currentPage == 1 ? "firstPage" : ''}>{"<"}</span>
         </button>
         {
@@ -98,7 +116,7 @@ export function AnimeNotices({ next_page, prev_page }: AnimeNoticesProps) {
             </button>
           ))
         }
-        <button className="pageNumber" type="button">
+        <button onClick={handleClickNumber} className="pageNumber" type="button">
           <span>{">"}</span>
         </button>
       </div>     
