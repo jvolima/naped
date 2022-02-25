@@ -10,13 +10,11 @@ interface AnimeNoticesProps {
 }
 
 interface Notice {
-  data: {
-    uid: string;
-    title: string;
-    description: string;
-    image: string;
-    last_publication_data: string;
-  }
+  uid: string;
+  title: string;
+  description: string;
+  image: string;
+  last_publication_data: string;
 }
 
 interface Data {
@@ -27,17 +25,52 @@ interface Data {
 export function AnimeNotices({ next_page, prev_page }: AnimeNoticesProps) {
   const { notices } = useNotices();
 
+  const [pageNotices, setPageNotices] = useState<Notice[]>([])
   const [data, setData] = useState<Data>()
+  const [pageNumbers, setPageNumbers] = useState<number[]>([])
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
-    fetch(next_page).then(response => response.json()).then(data => setData(data))
-  }, [])
+    setPageNotices(notices)
+    if(next_page !== null) {
+      fetch(next_page).then(response => response.json()).then(data => setData(data))
+      setPageNumbers(Array.from({length:data?.total_pages as number},(v,k)=>k+1))
+    }
+  }, [data?.total_pages])
+
+  async function handleClickNumber() {
+    if(next_page !== null) {
+      const response = await carregarProximaPagina()
+
+      console.log(response)
+
+      if (currentPage === pageNumbers.length) {
+        setCurrentPage(oldState => oldState - 1)
+      } else {
+        setCurrentPage(oldState => oldState + 1)
+        const newNotices: Notice[] = response.results.map((result: any) => {
+          const newNotice = {
+            uid: result.uid,
+            title: result.data.title,
+            description: result.data.description[0].text,
+            image: result.data.image.url,
+            last_publication_data: result.last_publication_date
+          }
+
+          return newNotice
+        })
+
+        setPageNotices(newNotices)  
+      }
+    }
+  }
+
 
   async function carregarProximaPagina() {
     if(next_page !== null) {
       const response = await fetch(next_page).then(response => response.json())
 
-      console.log(response);
+      return response;
     }
   }
 
@@ -45,11 +78,30 @@ export function AnimeNotices({ next_page, prev_page }: AnimeNoticesProps) {
     <Container>
       <div className="containerGrid">
         {
-          notices.map(notice => (
+          pageNotices.map(notice => (
             <CardAnimeNotices key={notice.uid} notice={notice}/>
           ))
         }
       </div>
+      <div className="pageChanger">
+        <button className="pageNumber" type="button">
+          <span className={currentPage == 1 ? "firstPage" : ''}>{"<"}</span>
+        </button>
+        {
+          pageNumbers.map(number => (
+            <button 
+              onClick={handleClickNumber} 
+              className={`pageNumber ${currentPage == number ? "currentPage" : ''}`} 
+              key={number}
+            >
+              <span>{number}</span>
+            </button>
+          ))
+        }
+        <button className="pageNumber" type="button">
+          <span>{">"}</span>
+        </button>
+      </div>     
     </Container>
   )
 }
