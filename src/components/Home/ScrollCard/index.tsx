@@ -6,6 +6,7 @@ interface ScrollCardProps {
   image: string;
   title: string;
   description: string;
+  firstParagraph: string;
   last_publication_data: string;
 }
 
@@ -14,6 +15,7 @@ export function ScrollCard({
     image, 
     title, 
     description, 
+    firstParagraph,
     last_publication_data
   }: ScrollCardProps
 ){
@@ -39,7 +41,7 @@ export function ScrollCard({
       </div>
       <div className="cardTexts">
         <p>{description}</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eros tellus, malesuada et velit in, blandit molestie dolor...</p>
+        <p className="paragraph">{firstParagraph}...</p>
         <time>{last_publication_date}</time>
         <button onClick={handleOpenNotice}>Ler notícia</button>
       </div>

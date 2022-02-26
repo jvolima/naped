@@ -15,6 +15,7 @@ interface Notice {
   description: string;
   image: string;
   last_publication_data: string;
+  firstParagraph: string;
 }
 
 interface NoticesContextData {

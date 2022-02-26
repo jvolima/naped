@@ -15,6 +15,7 @@ interface Notice {
   description: string;
   image: string;
   last_publication_data: string;
+  firstParagraph: string;
   category?: string;
 }
 
@@ -48,7 +49,8 @@ export const getStaticProps: GetStaticProps = async () => {
         "notices.title", 
         "notices.image", 
         "notices.description", 
-        "notices.category"
+        "notices.category", 
+        "notices.content"
       ],
       pageSize: 12,
     }
@@ -61,6 +63,7 @@ export const getStaticProps: GetStaticProps = async () => {
       description: RichText.asText(notice.data.description),
       image: notice.data.image.url as string,
       last_publication_data: notice.last_publication_date as string,
+      firstParagraph: notice.data.content[0].body[0].text,
       category: notice.data.category
     }
   })

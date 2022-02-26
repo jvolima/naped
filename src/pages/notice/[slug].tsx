@@ -23,6 +23,7 @@ interface Notice {
   title: string;
   description: string;
   image: string;
+  firstParagraph: string;
   last_publication_data: string;
 }
 
@@ -86,7 +87,8 @@ export const getStaticProps: GetStaticProps = async context => {
       fetch: [
         "notices.title", 
         "notices.image", 
-        "notices.description"
+        "notices.description", 
+        "notices.content"
       ],
       pageSize: 100
     }
@@ -98,6 +100,7 @@ export const getStaticProps: GetStaticProps = async context => {
       title: notice.data.title as string,
       description: RichText.asText(notice.data.description),
       image: notice.data.image.url as string,
+      firstParagraph: notice.data.content[0].body[0].text,
       last_publication_data: notice.last_publication_date as string
     }
   })
@@ -111,6 +114,7 @@ export const getStaticProps: GetStaticProps = async context => {
     title: response.data.title,
     description: response.data.description,
     image: response.data.banner.url,
+    firstParagraph: response.data.content[0].body[0],
     content: response.data.content.map((content: Content) => {
       return {
         heading: [...content.heading],
