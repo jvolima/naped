@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useNotices } from "../../../hooks/useNotices";
 import { CardAnimeNotices } from "../CardAnimeNotices";
@@ -101,25 +100,30 @@ export function AnimeNotices({ next_page, prev_page }: AnimeNoticesProps) {
           ))
         }
       </div>
-      <div className="pageChanger">
-        <button onClick={handleClickNumber} className="pageNumber" type="button">
-          <span className={currentPage == 1 ? "firstPage" : ''}>{"<"}</span>
-        </button>
-        {
-          pageNumbers.map(number => (
-            <button 
-              onClick={handleClickNumber} 
-              className={`pageNumber ${currentPage == number ? "currentPage" : ''}`} 
-              key={number}
-            >
-              <span>{number}</span>
+      {
+        pageNumbers.length > 1 ?
+          <div className="pageChanger">
+            <button onClick={currentPage != 1 ? handleClickNumber : (() => {})} className="pageNumber" type="button">
+              <span className={currentPage == 1 ? "blockClick" : ''}>{"<"}</span>
             </button>
-          ))
-        }
-        <button onClick={handleClickNumber} className="pageNumber" type="button">
-          <span>{">"}</span>
-        </button>
-      </div>     
+            {
+              pageNumbers.map(number => (
+                <button 
+                  onClick={handleClickNumber} 
+                  className={`pageNumber ${currentPage == number ? "currentPage" : ''}`} 
+                  key={number}
+                >
+                  <span>{number}</span>
+                </button>
+              ))
+            }
+            <button onClick={currentPage == pageNumbers.length ? (() => {}) : handleClickNumber} className="pageNumber" type="button">
+              <span className={currentPage == pageNumbers.length ? "blockClick" : ''}>{">"}</span>
+            </button>
+          </div>  
+        : 
+          ""
+      }    
     </Container>
   )
 }

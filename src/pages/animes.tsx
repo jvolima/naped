@@ -42,7 +42,7 @@ export default function Animes({ notices, next_page, prev_page }: AnimesProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
   const noticesResponse = await prismic.query(
-    [Prismic.predicates.at("document.type", "notices"), Prismic.predicates.at("my.notices.category", "filmes")],
+    [Prismic.predicates.at("document.type", "notices"), Prismic.predicates.at("my.notices.category", "animes")],
     {
       fetch: [
         "notices.title", 
@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps = async () => {
         "notices.description", 
         "notices.category"
       ],
-      pageSize: 2,
+      pageSize: 12,
     }
   )
 

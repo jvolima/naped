@@ -28,7 +28,7 @@ export const Container = styled.main`
       border: 0;
       border-radius: 3px;
 
-      .firstPage {
+      .blockClick {
         color: #545454;
       }
 
